@@ -8,13 +8,13 @@ const auth = async (req, res, next) => {
         const token = req.header('Authorization').replace('Bearer ', '')
         const decoded = jwt.verify(token, 'thisprojectisfromisdlab')//json web token encode the
         // string to make auth token
-        console.log("Toeknnnnn::" + token);
         console.log("decoded::" + decoded);
         const user = await User.findOne({ _id: decoded._id, 'tokens.token': token })
 
         if (!user) {
             throw new Error({ error: 'User not found' })
         }
+        console.log("Admin Token::" + token);
 
         req.token = token
         req.user = user

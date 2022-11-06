@@ -12,7 +12,7 @@ const auth = async (req, res, next) => {
         const decoded = jwt.verify(token, 'thisprojectisfromisdlab') //json web token encode the
         // string to make auth token
         console.log("Testing2");
-
+        console.log("Toeknnnnn U::" + token);
         console.log("decoded U::" + decoded);
         const user = await User.findOne({ _id: decoded._id, 'tokens.token': token })
 
